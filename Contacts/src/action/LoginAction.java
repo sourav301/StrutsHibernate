@@ -2,16 +2,12 @@ package action;
 
 import java.util.List;
 import java.util.Map;
-
 import model.LoginModel;
 import model.ProfileModel;
-
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
-
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
-
 import dao.UserDAO;
 import dto.User;
 
@@ -28,6 +24,12 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginModel
 	
 	@Override
 	public String execute(){
+		System.out.println("Login Execute");
+		return "success";
+	}
+	
+	public String loginMethod(){
+		System.out.println("Login Method");
 		if(checkLogin()){
 			sessionMap.put("password", "Session password");
 			return "success";
@@ -46,6 +48,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginModel
 			profileData.setUsername(u.getUserName());
 			profileData.setPhonenumber(u.getPhoneNumber());
 			profileData.setAddress(u.getAddress());
+			profileData.setCityName(u.getCities().getCityName());
 			sessionMap.put("userObject", profileData);
 			return true;
 		}

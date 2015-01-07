@@ -6,15 +6,22 @@
 <constant name="struts.devMode" value="true"></constant>
 	<package name="action" extends="struts-default">
 		
-	  	<action name="login" class="action.LoginAction" method="execute">
+	  	<action name="login">
+			<result>/login.jsp</result>
+		</action>
+		<action name="loginAction" class="action.LoginAction" method="loginMethod">
 			<result name="success">/profile.jsp</result>
 			<result name="fail">/login.jsp</result>
 		</action>
+		
 		<action name="register" class="action.Register" method="execute">
+			<result name="success">/RegistrationPage.jsp</result>
+		</action>
+		<action name="registerAction" class="action.Register" method="registerMethod">
 			<result name="success">/profile.jsp</result>
+			<result name="input">/RegistrationPage.jsp</result>
 			<result name="fail">/RegistrationPage.jsp</result>
 		</action>
-		
 		
 	</package>
 </struts>

@@ -8,11 +8,12 @@
 <title>Insert title here</title>
 </head>
 <body>
-<s:form action="register" method="post">
+<s:form action="registerAction" method="registerMethod">
 	<s:textfield name="username" label="Username" /><br>
 	<s:textfield name="password" label="Password" /><br>
 	<s:textfield name="address" label="Address" /><br>
 	<s:textfield name="phonenumber" label="Phone Number" /><br>
+	<s:select headerKey="-1" headerValue="Select Cities" name="Cities" list="#session.cityList"  listKey="cityId" listValue="cityName"></s:select>
 	<s:submit name="submit" label="Submit" align="center" />
 </s:form>
 

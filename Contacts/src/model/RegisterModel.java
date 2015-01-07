@@ -1,11 +1,20 @@
 package model;
 
+
 public class RegisterModel {
 	int id;
 	String Username;
 	String Password;
 	String Address;
 	String Phonenumber;
+	int cities;
+	
+	public int getCities() {
+		return cities;
+	}
+	public void setCities(int cities) {
+		this.cities = cities;
+	}
 	public int getId() {
 		return id;
 	}

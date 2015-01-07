@@ -11,6 +11,14 @@ public class User implements Serializable{
 	String passWord;
 	String address;
 	String phoneNumber;
+	City cities;
+
+	public City getCities() {
+		return cities;
+	}
+	public void setCities(City cities) {
+		this.cities = cities;
+	}
 	public int getId() {
 		return id;
 	}

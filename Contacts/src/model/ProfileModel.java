@@ -6,8 +6,15 @@ public class ProfileModel {
 	String Password;
 	String Address;
 	String Phonenumber;
+	String cityName;
 	public int getId() {
 		return id;
+	}
+	public String getCityName() {
+		return cityName;
+	}
+	public void setCityName(String cityName) {
+		this.cityName = cityName;
 	}
 	public void setId(int id) {
 		this.id = id;

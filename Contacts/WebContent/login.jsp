@@ -8,8 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<s:form action="login" method="post">
-
+<s:form action="loginAction" method="loginMethod">
 <s:textfield name="Username" label="Username"></s:textfield>
 <s:textfield name="Password" label="Password"></s:textfield>
 <s:submit value="Login"></s:submit>

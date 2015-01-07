@@ -19,6 +19,19 @@
 		<property name="phoneNumber" type="java.lang.String">
 			<column name="phone_number"></column>
 		</property>
+		<many-to-one name="Cities" class="dto.City" fetch="select" lazy="false">
+            <column name="city_id"  />
+        </many-to-one>
 		
+	</class>
+	<class name="dto.City" table="cities">
+		<id name="cityId">
+			<column name="city_id"></column>
+			<generator class="native"></generator>
+			
+		</id>
+		<property name="cityName" type="java.lang.String">
+			<column name="city_name"></column>
+		</property>
 	</class>
 </hibernate-mapping>
