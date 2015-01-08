@@ -8,6 +8,7 @@ public class RegisterModel {
 	String Address;
 	String Phonenumber;
 	int cities;
+	int colourId;
 	
 	public int getCities() {
 		return cities;
@@ -17,6 +18,12 @@ public class RegisterModel {
 	}
 	public int getId() {
 		return id;
+	}
+	public int getColourId() {
+		return colourId;
+	}
+	public void setColourId(int colourId) {
+		this.colourId = colourId;
 	}
 	public void setId(int id) {
 		this.id = id;

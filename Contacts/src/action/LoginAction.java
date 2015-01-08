@@ -49,6 +49,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginModel
 			profileData.setPhonenumber(u.getPhoneNumber());
 			profileData.setAddress(u.getAddress());
 			profileData.setCityName(u.getCities().getCityName());
+			profileData.setColourName(u.getColour().getColourName());
 			sessionMap.put("userObject", profileData);
 			return true;
 		}

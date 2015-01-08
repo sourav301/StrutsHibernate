@@ -2,6 +2,8 @@ package dto;
 
 import java.io.Serializable;
 
+import vo.ColourVO;
+
 public class User implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -12,7 +14,14 @@ public class User implements Serializable{
 	String address;
 	String phoneNumber;
 	City cities;
+	Colour colour;
 
+	public Colour getColour() {
+		return colour;
+	}
+	public void setColour(Colour colour) {
+		this.colour = colour;
+	}
 	public City getCities() {
 		return cities;
 	}

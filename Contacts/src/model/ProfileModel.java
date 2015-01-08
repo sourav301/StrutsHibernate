@@ -7,11 +7,18 @@ public class ProfileModel {
 	String Address;
 	String Phonenumber;
 	String cityName;
+	String colourName;
 	public int getId() {
 		return id;
 	}
 	public String getCityName() {
 		return cityName;
+	}
+	public String getColourName() {
+		return colourName;
+	}
+	public void setColourName(String colourName) {
+		this.colourName = colourName;
 	}
 	public void setCityName(String cityName) {
 		this.cityName = cityName;

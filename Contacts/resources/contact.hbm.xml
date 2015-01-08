@@ -22,6 +22,9 @@
 		<many-to-one name="Cities" class="dto.City" fetch="select" lazy="false">
             <column name="city_id"  />
         </many-to-one>
+		<many-to-one name="colour" class="dto.Colour" fetch="select" lazy="false">
+            <column name="colour_id"  />
+        </many-to-one>
 		
 	</class>
 	<class name="dto.City" table="cities">
@@ -32,6 +35,17 @@
 		</id>
 		<property name="cityName" type="java.lang.String">
 			<column name="city_name"></column>
+		</property>
+	</class>
+	
+	<class name="dto.Colour" table="colours">
+		<id name="id">
+			<column name="id"></column>
+			<generator class="native"></generator>
+			
+		</id>
+		<property name="colourName" type="java.lang.String">
+			<column name="colour_name"></column>
 		</property>
 	</class>
 </hibernate-mapping>
