@@ -56,7 +56,16 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginModel
 		else		
 			return false;
 	}
-
+//	@Override
+//	public void validate(){
+//		System.out.println("######Validate");
+//		
+//		if(user.getUsername()==null||user.getUsername().equalsIgnoreCase("")){
+//			this.addFieldError("Username","Please enter Username");
+//		}if(user.getPassword()==null||user.getPassword().equalsIgnoreCase("")){
+//			this.addFieldError("Password","Please enter Password");
+//		}
+//	}
 	@Override
 	public void setSession(Map<String, Object> map) {
 		 sessionMap=(SessionMap)map;  

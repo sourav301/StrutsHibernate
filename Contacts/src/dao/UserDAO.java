@@ -73,7 +73,7 @@ public class UserDAO {
             e.printStackTrace();
             session.getTransaction().rollback();
         }finally{
-        	
+        	session.close();
 		}
 		return loginModelList;
 	}

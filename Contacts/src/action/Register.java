@@ -18,6 +18,7 @@ import vo.ColourVO;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+import com.opensymphony.xwork2.Preparable;
 
 import dao.CityDao;
 import dao.ColourDao;
@@ -25,7 +26,7 @@ import dao.UserDAO;
 import dto.City;
 import dto.Colour;
 
-public class Register extends ActionSupport implements ModelDriven<RegisterModel>,SessionAware {
+public class Register extends ActionSupport implements ModelDriven<RegisterModel>,SessionAware,Preparable {
 	SessionMap<String, Object> sessionMap;
 	RegisterModel regMod = new RegisterModel();
 	ProfileModel profileData = new ProfileModel();
@@ -38,31 +39,6 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 	
 	@Override
 	public String execute(){
-		//Get City List from DB
-		cityList = new ArrayList<CityVO>();
-		List<City> cityDto;
-		cityDto = cityDao.getCityList();
-		for (City city : cityDto) {
-			CityVO cityModel = new CityVO();
-			cityModel.setCityId(city.getCityId());
-			cityModel.setCityName(city.getCityName());
-			cityList.add(cityModel);
-			System.out.println(city.getCityName());
-		}
-		sessionMap.put("cityList",cityList);
-		
-		//Get Colour List from DB
-		colourList = new ArrayList<ColourVO>();
-		List<Colour> colourDto;
-		colourDto = colourDao.getColourList();
-		for(Colour colour:colourDto){
-			ColourVO colourVo = new ColourVO();
-			colourVo.setId(colour.getId());
-			colourVo.setColourName(colour.getColourName());
-			colourList.add(colourVo);
-			System.out.println(colour.getColourName());
-		}
-		sessionMap.put("colourList", colourList);
 		System.out.println("#############Register Execute");
 		return "success";
 	}
@@ -84,6 +60,17 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 		else
 			return "fail";
 	}
+	public void validate(){
+		System.out.println("Validate Method Fired");
+		if(regMod.getUsername()==null||regMod.getUsername().equalsIgnoreCase("")){
+			this.addFieldError("username","Dude!! enter Username");
+		}if(regMod.getPassword()==null||regMod.getPassword().equalsIgnoreCase("")){
+			this.addFieldError("password","Dude!! enter Password");
+		}if(regMod.getCities()==-1){
+			this.addFieldError("Cities","Please Select City");
+		}
+	}
+	
 	@Override
 	public RegisterModel getModel() {
 		// TODO Auto-generated method stub
@@ -93,6 +80,38 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 	public void setSession(Map<String, Object> arg0) {
 		sessionMap =(SessionMap<String, Object>) arg0;
 		
+	}
+	@Override
+	public void prepare()  {
+		System.out.println("#####Register Constructor");
+		//Get City List from DB
+		cityList = new ArrayList<CityVO>();
+		List<City> cityDto;
+		cityDto = cityDao.getCityList();
+		for (City city : cityDto) {
+			CityVO cityModel = new CityVO();
+			cityModel.setCityId(city.getCityId());
+			cityModel.setCityName(city.getCityName());
+			cityList.add(cityModel);
+//			System.out.println(city.getCityName());
+		}
+		regMod.setCityList(cityList);
+		//sessionMap.put("cityList",cityList);
+		
+		//Get Colour List from DB
+		colourList = new ArrayList<ColourVO>();
+		List<Colour> colourDto;
+		colourDto = colourDao.getColourList();
+		for(Colour colour:colourDto){
+			ColourVO colourVo = new ColourVO();
+			colourVo.setId(colour.getId());
+			colourVo.setColourName(colour.getColourName());
+			colourList.add(colourVo);
+//			System.out.println(colour.getColourName());
+		}
+		//sessionMap.put("colourList", colourList);
+		regMod.setColourList(colourList);
+				
 	}
 
 }

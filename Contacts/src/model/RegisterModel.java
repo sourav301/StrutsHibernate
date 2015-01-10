@@ -1,5 +1,10 @@
 package model;
 
+import java.util.List;
+
+import vo.CityVO;
+import vo.ColourVO;
+
 
 public class RegisterModel {
 	int id;
@@ -9,7 +14,21 @@ public class RegisterModel {
 	String Phonenumber;
 	int cities;
 	int colourId;
+	List<CityVO> cityList;
+	List<ColourVO> colourList;
 	
+	public List<CityVO> getCityList() {
+		return cityList;
+	}
+	public void setCityList(List<CityVO> cityList) {
+		this.cityList = cityList;
+	}
+	public List<ColourVO> getColourList() {
+		return colourList;
+	}
+	public void setColourList(List<ColourVO> colourList) {
+		this.colourList = colourList;
+	}
 	public int getCities() {
 		return cities;
 	}
