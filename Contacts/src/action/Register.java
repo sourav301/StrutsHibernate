@@ -46,14 +46,14 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 	public String registerMethod(){
 		System.out.println("####registerMethod");
 		
-		List<CityVO> cityList = (List<CityVO>)sessionMap.get("cityList");
-		List<ColourVO> colourList = (List<ColourVO>)sessionMap.get("colourList");
 		
 		if(userDAO.AddUser(regMod,cityList.get(regMod.getCities()),colourList.get(regMod.getColourId()))){
 			request.setAttribute("status", "Registration Successful- Welcome to our Struts Application!");
 			profileData.setUsername(regMod.getUsername());
 			profileData.setPhonenumber(regMod.getPhonenumber());
 			profileData.setAddress(regMod.getAddress());
+			profileData.setCityName(cityList.get(regMod.getCities()).getCityName());
+			profileData.setColourName(colourList.get(regMod.getColourId()).getColourName());
 			sessionMap.put("userObject", profileData);
 			return "success";
 		}
@@ -76,11 +76,7 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 		// TODO Auto-generated method stub
 		return regMod;
 	}
-	@Override
-	public void setSession(Map<String, Object> arg0) {
-		sessionMap =(SessionMap<String, Object>) arg0;
-		
-	}
+	
 	@Override
 	public void prepare()  {
 		System.out.println("#####Register Constructor");
@@ -112,6 +108,12 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 		//sessionMap.put("colourList", colourList);
 		regMod.setColourList(colourList);
 				
+	}
+
+	@Override
+	public void setSession(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		sessionMap=(SessionMap)map;
 	}
 
 }

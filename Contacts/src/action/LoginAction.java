@@ -2,12 +2,20 @@ package action;
 
 import java.util.List;
 import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+
 import model.LoginModel;
 import model.ProfileModel;
+
+import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
+import org.omg.CORBA.Request;
+
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
+
 import dao.UserDAO;
 import dto.User;
 
@@ -16,7 +24,8 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginModel
 	LoginModel user = new LoginModel();
 	ProfileModel profileData = new ProfileModel();
 	private SessionMap<String,Object> sessionMap; 
-	
+	HttpServletRequest request = ServletActionContext.getRequest();
+
 	@Override
 	public LoginModel getModel() {
 		return user;
@@ -31,7 +40,7 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginModel
 	public String loginMethod(){
 		System.out.println("Login Method");
 		if(checkLogin()){
-			sessionMap.put("password", "Session password");
+			System.out.println("Returning Success");
 			return "success";
 		}
 		else

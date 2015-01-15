@@ -8,7 +8,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<s:form action="registerAction" method="registerMethod">
+<s:form action="registerAction" method="registerMethod" validate="true">
 	<s:textfield name="username" label="Username" /><br>
 	<s:textfield name="password" label="Password" /><br>
 	<s:textfield name="address" label="Address" /><br>

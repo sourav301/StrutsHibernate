@@ -12,8 +12,8 @@
 Welcome <s:property value="#session.userObject.username"/><br>
 Address:<s:property value="#session.userObject.address"/><br>
 Phone Number:  <s:property value="#session.userObject.phonenumber"/><br>
-City:  <s:property value="#session.userObject.cityName"/><br>
-Colour:  <s:property value="#session.userObject.colourName"/><br>
+City:<s:property value="#session.userObject.cityName"/><br>
+Colour:<s:property value="#session.userObject.colourName"/><br>
 
 </body>
 </html>
