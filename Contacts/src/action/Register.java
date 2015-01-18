@@ -12,7 +12,10 @@ import model.RegisterModel;
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import service.LoginService;
 import vo.CityVO;
 import vo.ColourVO;
 
@@ -30,7 +33,6 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 	SessionMap<String, Object> sessionMap;
 	RegisterModel regMod = new RegisterModel();
 	ProfileModel profileData = new ProfileModel();
-	UserDAO userDAO = new UserDAO();
 	CityDao cityDao = new CityDao();
 	ColourDao colourDao = new ColourDao();
 	List<CityVO> cityList;
@@ -45,6 +47,9 @@ public class Register extends ActionSupport implements ModelDriven<RegisterModel
 	
 	public String registerMethod(){
 		System.out.println("####registerMethod");
+		ApplicationContext applicationContext = null;
+		applicationContext = new ClassPathXmlApplicationContext("service.xml");
+		LoginService userDAO = (LoginService) applicationContext.getBean("LoginService");
 		
 		
 		if(userDAO.AddUser(regMod,cityList.get(regMod.getCities()),colourList.get(regMod.getColourId()))){

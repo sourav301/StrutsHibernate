@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
+	
+	
+	
+	<!-- <bean id="dataSourceBean" class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
+	  <property name="url" value="jdbc:oracle:thin:@172.20.1.100:1521:orcl"/>
+	  <property name="username" value="ITSDev"/>
+	  <property name="password" value="password"/>
+	</bean> -->
+	<bean name="dataSourceBean" class="org.apache.commons.dbcp.BasicDataSource">
+	    <property name="driverClassName" value="com.mysql.jdbc.Driver" />
+	    <property name="url" value="jdbc:mysql://localhost:3306/user" />
+	    <property name="username" value="root" />
+	    <property name="password" value="root" />
+	</bean>
+	<bean id="sessionFactoryBean" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource" ref="dataSourceBean" />
+		<property name="configLocation" value="classpath:hibernate.cfg.xml" />
+	</bean>
+  	<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactoryBean" />
+	</bean>
+	
+	<bean id="userDao" class="dao.UserDAO" >
+   		 <property name="sessionFactory" ref="sessionFactoryBean" />
+    </bean> 
+</beans>

@@ -12,6 +12,10 @@ import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;
 import org.apache.struts2.interceptor.SessionAware;
 import org.omg.CORBA.Request;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+import service.LoginService;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.opensymphony.xwork2.ModelDriven;
@@ -48,8 +52,10 @@ public class LoginAction extends ActionSupport implements ModelDriven<LoginModel
 	}
 	
 	private boolean checkLogin(){
-		UserDAO userDAO = new UserDAO();
-		List<User> users = userDAO.getLoginList(user);
+		ApplicationContext applicationContext = null;
+		applicationContext = new ClassPathXmlApplicationContext("service.xml");
+		LoginService userDAO = (LoginService) applicationContext.getBean("LoginService");
+		List<User> users = userDAO.getUserList(user);
 		
 		int n = users.size();
 		if(n>0){
